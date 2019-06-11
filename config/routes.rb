@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  namespace :v1, defaults: { format: 'json' } do
-    get 'things', to: 'things#index'
+  
+  namespace :api do
+    namespace :v1, defaults: { format: 'json' } do
+      get 'challenges', to: 'challenges#index'
+    end
   end
+
 end
