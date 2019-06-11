@@ -21,7 +21,8 @@ class Api::V1::ChallengesController < Api::V1::BaseController
     private
 
     def challenge_params
-        params.require(:challenges).permit(:name, :daysLeft)
+        binding.pry
+        params.require(:challenge).permit(:name, :daysLeft)
     end
 
 end
