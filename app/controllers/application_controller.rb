@@ -6,16 +6,22 @@ class ApplicationController < ActionController::API
     #this will run before any controller action
     #can't accidently forget to add authentication for controller actions
 
+    def current_user
+        @current_user ||= authenticate #since the method authenticate already returns a user
+    end
+    
+    def authenticate
+        authenticate_or_request_with_http_token do |token| #this is what the action controller httpauthentication gives
+            begin
+                decoded = decode(token)
+                @current_user = User.find_by(id: decoded[0]["user_id"])
+            rescue JWT::DecodeError
+                render json: { authorized: false}, status: 401
+            end
+        end
+    end
 
     private
-
-    def current_user
-
-    end
-
-    def authenticate
-
-    end
 
     #JWT METHODS 
 

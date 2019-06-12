@@ -1,6 +1,6 @@
 class AuthController < ApplicationController
 
-    skip_before_action :authenticate, :login
+    skip_before_action :authenticate, only: [:login]
     #we don't need to authenticate loginning in, since that is the point of the login page
 
     #post to /login with { username: 'some_thing', password: 'some password'}

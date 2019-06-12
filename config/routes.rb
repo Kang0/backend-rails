@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   end
 
   post '/login', to: 'auth#login'
-  get '/user', to: 'users#show_user'
-  resources :users
+  get '/user', to: 'user#show_user'
+
+
 
 end
