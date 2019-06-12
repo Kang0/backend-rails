@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:create]
+  post '/registration', to: 'auth#create'
 
   post '/login', to: 'auth#login'
   get '/user', to: 'user#show_user'
