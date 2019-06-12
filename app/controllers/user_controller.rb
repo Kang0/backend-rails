@@ -5,10 +5,19 @@ class UserController < ApplicationController
         #this only shows the username and email and not the password_digest
     end
 
+    def create
+        user = User.new(user_params)
+
+        if user.save
+            render json: { status: 'User successfully created '}, status: :created
+        else
+            render json: { errors: user.errors.full_messages }, status: :bad_request
+    end
+
     private
 
-    # def challenge_params
-    #     params.require(:challenge).permit(:name, :daysLeft)
-    # end
+    def user_params
+        params.require(:user).permit(:username, :email, :password)
+    end
 
 end
