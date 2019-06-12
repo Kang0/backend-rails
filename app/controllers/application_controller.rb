@@ -11,6 +11,7 @@ class ApplicationController < ActionController::API
     end
     
     def authenticate
+
         authenticate_or_request_with_http_token do |token| #this is what the action controller httpauthentication gives
             begin
                 decoded = decode(token)
@@ -19,6 +20,7 @@ class ApplicationController < ActionController::API
                 render json: { authorized: false}, status: 401
             end
         end
+
     end
 
     private

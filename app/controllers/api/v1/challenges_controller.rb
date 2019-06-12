@@ -5,7 +5,12 @@ class Api::V1::ChallengesController < Api::V1::BaseController
     end
 
     def create
-        respond_with :api, :v1, Challenge.create(challenge_params)
+        
+        @challenge = Challenge.new(challenge_params)
+        @challenge.user_id = current_user.id
+        @challenge.save
+
+        respond_with :api, :v1, @challenge
     end
 
     def destroy
