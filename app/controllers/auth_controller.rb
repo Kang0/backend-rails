@@ -12,7 +12,7 @@ class AuthController < ApplicationController
             token = encode( {user_id: user.id} )
             render json: { token: token, success: true }
         else
-            render json: { success: false }
+            render json: { errors: 'Invalid username / password'}, status: :unauthorized
         end
     end
 
@@ -20,7 +20,6 @@ class AuthController < ApplicationController
         user = User.new(user_params)
 
         if user.save
-            binding.pry
             render json: { status: 'User successfully created '}, status: :created
         else
             render json: { errors: user.errors.full_messages }, status: :bad_request
@@ -30,7 +29,6 @@ class AuthController < ApplicationController
     private
 
     def user_params
-        binding.pry
         params.require(:user).permit(:username, :email, :password)
     end
 

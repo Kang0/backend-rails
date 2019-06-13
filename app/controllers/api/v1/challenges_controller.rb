@@ -7,7 +7,7 @@ class Api::V1::ChallengesController < Api::V1::BaseController
     def create
         
         @challenge = Challenge.new(challenge_params)
-        @challenge.user_id = current_user.id
+        @challenge.user_id = current_user.id #may need to refractor the way this handles setting the user id
         @challenge.save
 
         respond_with :api, :v1, @challenge
@@ -26,7 +26,7 @@ class Api::V1::ChallengesController < Api::V1::BaseController
     private
 
     def challenge_params
-        params.require(:challenge).permit(:name, :daysLeft)
+        params.require(:challenge).permit(:name, :daysLeft, :dayCreated, :lastDay)
     end
 
 end
