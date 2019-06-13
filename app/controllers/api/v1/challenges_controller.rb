@@ -1,7 +1,11 @@
 class Api::V1::ChallengesController < Api::V1::BaseController
 
     def index
-        respond_with Challenge.all
+        @challenges = Challenge.all
+
+        respond_to do |f|
+            f.json { render :json => @challenges.to_json( :only => [ :name, :daysLeft, :user_id, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick ])}
+        end
     end
 
     def create
@@ -18,9 +22,13 @@ class Api::V1::ChallengesController < Api::V1::BaseController
     end
 
     def update
-        item = Item.find(params[:id])
-        item.update_attribute(items_params)
-        respond_with item, json: item
+        binding.pry
+        challenge = Challenge.find(params[:id])
+        challenge.update_attribute(challenge_params)
+        respond_with challenge, json: challenge
+        # item = Item.find(params[:id])
+        # item.update_attribute(items_params)
+        # respond_with item, json: item
     end
 
     private
