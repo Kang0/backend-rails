@@ -10,9 +10,13 @@ class Api::V1::ChallengesController < Api::V1::BaseController
 
     def create
         
+        #create challenge
         @challenge = Challenge.new(challenge_params)
         @challenge.user_id = current_user.id #may need to refractor the way this handles setting the user id
-        @challenge.save
+        if @challenge.save
+            mini = Mini.create(level: 1, speciality: '', born: Date.today.to_formatted_s(:long), graduated: false, age: 1, challenge_id: @challenge.id)
+            binding.pry
+        end
 
         respond_with :api, :v1, @challenge
     end

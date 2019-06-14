@@ -7,6 +7,7 @@ class User < ApplicationRecord
     before_save :downcase_email
 
     has_many :challenges
+    has_one :locker
 
     def downcase_email
         self.email = self.email.delete(' ').downcase

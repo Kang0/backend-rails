@@ -6,6 +6,7 @@ class CreateMinis < ActiveRecord::Migration[5.2]
       t.string :born
       t.boolean :graduated
       t.integer :age
+      t.integer :challenge_id
 
       t.timestamps
     end

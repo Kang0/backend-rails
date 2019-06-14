@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_06_14_002843) do
     t.string "born"
     t.boolean "graduated"
     t.integer "age"
+    t.integer "challenge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
