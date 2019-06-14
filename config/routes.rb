@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/registration', to: 'auth#create'
   post '/login', to: 'auth#login'
   get '/user', to: 'user#show_user'
+  get '/user/challenges', to: 'user#show_challenges'
 
 
 
