@@ -20,6 +20,7 @@ class AuthController < ApplicationController
         user = User.new(user_params)
 
         if user.save
+            locker = Locker.create(currency: 0, user_id: user.id)
             render json: { status: 'User successfully created '}, status: :created
         else
             render json: { errors: user.errors.full_messages }, status: :bad_request

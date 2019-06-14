@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_14_002843) do
+ActiveRecord::Schema.define(version: 2019_06_14_013217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 2019_06_14_002843) do
     t.string "timeClicked"
     t.string "timeToClick"
     t.index ["user_id"], name: "index_challenges_on_user_id"
+  end
+
+  create_table "lockers", force: :cascade do |t|
+    t.integer "currency"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_lockers_on_user_id"
   end
 
   create_table "minis", force: :cascade do |t|
