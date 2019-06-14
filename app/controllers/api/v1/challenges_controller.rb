@@ -4,7 +4,7 @@ class Api::V1::ChallengesController < Api::V1::BaseController
         @challenges = Challenge.all
 
         respond_to do |f|
-            f.json { render :json => @challenges.to_json( :only => [ :name, :daysLeft, :user_id, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick ])}
+            f.json { render :json => @challenges.to_json( :only => [ :id, :name, :daysLeft, :user_id, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick ])}
         end
     end
 
@@ -22,19 +22,23 @@ class Api::V1::ChallengesController < Api::V1::BaseController
     end
 
     def update
-        binding.pry
         challenge = Challenge.find(params[:id])
-        challenge.update_attribute(challenge_params)
-        respond_with challenge, json: challenge
-        # item = Item.find(params[:id])
-        # item.update_attribute(items_params)
-        # respond_with item, json: item
+
+        if challenge.update(challenge_params)
+            puts("Challenge updated successfully")
+            respond_to do |f|
+                f.json { render :json => challenge.to_json( :only => [ :id, :name, :daysLeft, :user_id, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick ])}
+            end
+        else
+            render json: { errors: 'Could not successfully update' }, status: :bad_request
+        end
+
     end
 
     private
 
     def challenge_params
-        params.require(:challenge).permit(:name, :daysLeft, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick)
+        params.require(:challenge).permit(:id, :name, :daysLeft, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick, :user_id)
     end
 
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  level: 1
+  speciality: MyString
+  born: MyString
+  graduated: false
+  age: 1
+
+two:
+  level: 1
+  speciality: MyString
+  born: MyString
+  graduated: false
+  age: 1
