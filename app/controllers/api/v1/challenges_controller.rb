@@ -34,7 +34,6 @@ class Api::V1::ChallengesController < Api::V1::BaseController
         else
             render json: { errors: 'Could not successfully update' }, status: :bad_request
         end
-
     end
 
     private

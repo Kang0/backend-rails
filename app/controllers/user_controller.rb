@@ -6,7 +6,13 @@ class UserController < ApplicationController
     end
 
     def show_challenges
+        challenges = Challenge.find_by(user_id: current_user.id)
         binding.pry
+    end
+
+    def find_user
+        user = User.find_by(username: params[:username])
+        render json: user, only: [:id, :username, :email]
     end
 
     private
