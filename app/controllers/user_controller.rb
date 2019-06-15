@@ -20,6 +20,11 @@ class UserController < ApplicationController
         render json: locker, except: [:created_at, :updated_at]
     end
 
+    def update_locker
+        locker = current_user.locker
+        locker.update(currency: params["currency"])
+    end
+
     private
 
     def user_params
