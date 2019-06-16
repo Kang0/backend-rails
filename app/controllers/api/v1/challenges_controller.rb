@@ -14,10 +14,13 @@ class Api::V1::ChallengesController < Api::V1::BaseController
         challenge.user_id = current_user.id #may need to refractor the way this handles setting the user id
         challenge.save
 
-        #for tomorrow
-        # params[:calendar].each do |date|
-        #     binding.pry
-        # end
+        params[:calendar].each do |date|
+            permit_date = date.permit(:years, :months, :date)
+            newDate = challenge.calendars.build(permit_date)
+            newDate.save
+        end
+
+        binding.pry
 
         # mini = Mini.create(level: 1, speciality: '', born: Date.today.to_formatted_s(:long), graduated: false, age: 1, challenge_id: @challenge.id)
 
@@ -51,10 +54,6 @@ class Api::V1::ChallengesController < Api::V1::BaseController
 
     def challenge_params
         params.require(:challenge).permit(:id, :name, :daysLeft, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick, :user_id)
-    end
-
-    def calendar_params
-        params.require(:calendar)
     end
 
 end
