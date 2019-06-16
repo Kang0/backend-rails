@@ -19,9 +19,7 @@ class Api::V1::ChallengesController < Api::V1::BaseController
             newDate = challenge.calendars.build(permit_date)
             newDate.save
         end
-
-        binding.pry
-
+        
         # mini = Mini.create(level: 1, speciality: '', born: Date.today.to_formatted_s(:long), graduated: false, age: 1, challenge_id: @challenge.id)
 
         #add 10 currency to user's locker when a challenge is created
