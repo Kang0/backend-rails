@@ -8,12 +8,16 @@ class Api::V1::ChallengesController < Api::V1::BaseController
         end
     end
 
-    def create
-        
+    def create        
         #create challenge
-        @challenge = Challenge.new(challenge_params)
-        @challenge.user_id = current_user.id #may need to refractor the way this handles setting the user id
-        @challenge.save
+        challenge = Challenge.new(challenge_params)
+        challenge.user_id = current_user.id #may need to refractor the way this handles setting the user id
+        challenge.save
+
+        #for tomorrow
+        # params[:calendar].each do |date|
+        #     binding.pry
+        # end
 
         # mini = Mini.create(level: 1, speciality: '', born: Date.today.to_formatted_s(:long), graduated: false, age: 1, challenge_id: @challenge.id)
 
@@ -22,7 +26,7 @@ class Api::V1::ChallengesController < Api::V1::BaseController
         user_locker.currency += 10
         user_locker.save
 
-        render json: {challenge: @challenge, locker: user_locker.currency}
+        render json: {challenge: challenge, locker: user_locker.currency}
         # going to have to serialize whats returned from challenge
     end
 
@@ -47,6 +51,10 @@ class Api::V1::ChallengesController < Api::V1::BaseController
 
     def challenge_params
         params.require(:challenge).permit(:id, :name, :daysLeft, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick, :user_id)
+    end
+
+    def calendar_params
+        params.require(:calendar)
     end
 
 end

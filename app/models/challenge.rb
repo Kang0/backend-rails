@@ -2,6 +2,6 @@ class Challenge < ApplicationRecord
 
     belongs_to :user
 
-    has_one :mini
+    has_many :calendars
 
 end

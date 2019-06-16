@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_14_013217) do
+ActiveRecord::Schema.define(version: 2019_06_16_050100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "calendars", force: :cascade do |t|
+    t.integer "years"
+    t.integer "months"
+    t.integer "date"
+    t.bigint "challenge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_calendars_on_challenge_id"
+  end
 
   create_table "challenges", force: :cascade do |t|
     t.string "name"
