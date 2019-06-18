@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   
   namespace :api do
     namespace :v1, defaults: { format: 'json' } do
-      resources :challenges, only: [:index, :create, :destroy, :update]
+      resources :challenges, only: [:index, :create, :destroy, :update] do 
+        resources :calendars, only: [:index]
+      end
     end
   end
 
