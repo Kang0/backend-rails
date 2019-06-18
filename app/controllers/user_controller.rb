@@ -7,7 +7,8 @@ class UserController < ApplicationController
 
     def show_challenges
         challenges = Challenge.where(user_id: current_user.id)
-        render :json => { :challenges => challenges.as_json(include: {calendars: {only: [:years, :months, :date]} } )} # have to use active model serializer for this for challenges
+        render json: challenges 
+        # render :json => { :challenges => challenges.as_json(include: {calendars: {only: [:years, :months, :date]} } )} 
         # showing challenges and the associated calendaer objects as a nested attribute in each challenge
     end
 
