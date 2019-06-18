@@ -33,8 +33,8 @@ class Api::V1::ChallengesController < Api::V1::BaseController
 
     def destroy
         Challenge.destroy(params[:challenge][:id])
-        binding.pry
-        render json: {challenge: Challenge.all}
+        userChallenges = Challenge.where(user_id: current_user.id)
+        render :json => { :challenges => userChallenges.as_json(include: {calendars: {only: [:years, :months, :date]} } )}
         # respond_with Item.destroy(params[:id])
     end
 
