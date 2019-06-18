@@ -32,7 +32,10 @@ class Api::V1::ChallengesController < Api::V1::BaseController
     end
 
     def destroy
-        respond_with Item.destroy(params[:id])
+        Challenge.destroy(params[:challenge][:id])
+        binding.pry
+        render json: {challenge: Challenge.all}
+        # respond_with Item.destroy(params[:id])
     end
 
     def update
