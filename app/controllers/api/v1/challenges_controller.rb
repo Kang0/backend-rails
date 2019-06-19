@@ -27,7 +27,7 @@ class Api::V1::ChallengesController < Api::V1::BaseController
         user_locker.currency += 10
         user_locker.save
 
-        render json: {challenge: challenge, locker: user_locker.currency}
+        render json: challenge
         # going to have to serialize whats returned from challenge
     end
 

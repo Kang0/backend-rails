@@ -4,6 +4,8 @@ class CreateCalendars < ActiveRecord::Migration[5.2]
       t.integer :years
       t.integer :months
       t.integer :date
+      t.boolean :clicked, :default => false
+      t.boolean :userCell, :default => true
       t.belongs_to :challenge
 
       t.timestamps
