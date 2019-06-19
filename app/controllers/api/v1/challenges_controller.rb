@@ -44,9 +44,15 @@ class Api::V1::ChallengesController < Api::V1::BaseController
 
         if challenge.update(challenge_params)
             puts("Challenge updated successfully")
-            respond_to do |f|
-                f.json { render :json => challenge.to_json( :only => [ :id, :name, :daysLeft, :user_id, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick ])}
-            end
+            #update calendar cell with clicked to true
+            calendar = challenge.calendars
+            currentDay = params[:currentTime].split(" ")
+            calendarCell = calendar.where(months: currentDay[0].to_i, date: currentDay[1].to_i).first
+            calendarCell.clicked = true
+            calendarCell.save
+
+            render json: challenge
+
         else
             render json: { errors: 'Could not successfully update' }, status: :bad_request
         end
