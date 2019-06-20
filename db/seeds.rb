@@ -14,6 +14,8 @@
 
 @paint = Challenge.create(name: "Paint", daysLeft: 86, user_id: @user.id, dayCreated: "06-05-2019", lastDay: "09-13-2019", clicked: false, timeClicked: "June 19 19, 4:23 pm", timeToClick: "June 20 19, 12:00 am")
 
+Locker.create(currency: 0, user_id: 1)
+
 #create calendar for first challenge "Learn Javascript"
 Calendar.create(years: 2019, months: 4, date: 6, clicked: true, userCell: true, challenge_id: @javascript.id)
 Calendar.create(years: 2019, months: 4, date: 7, clicked: true, userCell: true, challenge_id: @javascript.id)
