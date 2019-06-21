@@ -5,10 +5,11 @@ class UserController < ApplicationController
     def login
         user = User.find_by(username: params[:username])
 
+        #user serializer only serializers one level deep, tried to pass in token and user in the render json, but cannot
         if user && user.authenticate(params[:password])
-            current_user = user
-            token = encode( {user_id: user.id} )
-            render :json => {:user => user, :token => token}
+            token = encode({user_id: user.id})
+            userInfo = {:username => user.username, :email => user.email, :token => token}
+            render json: userInfo
         else
             render json: { errors: 'Invalid username / password'}, status: :unauthorized
         end
