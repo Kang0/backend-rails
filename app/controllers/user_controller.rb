@@ -9,7 +9,7 @@ class UserController < ApplicationController
         if user && user.authenticate(params[:password])
             token = encode({user_id: user.id})
             userInfo = {:username => user.username, :email => user.email, :token => token, :status => "success", :message => "Successfully Logged In"}
-            render json: userInfo
+            render json: userInfo, status: :ok
         else
             render json: { errors: 'Invalid username / password'}, status: :unauthorized
         end
@@ -20,7 +20,7 @@ class UserController < ApplicationController
 
         if user.save
             user.create_locker(currency: 0)
-            render json: { status: 'User successfully created '}, status: :created
+            render json: { message: 'User successfully created. Please log in.'}
         else
             render json: { errors: user.errors.full_messages }, status: :bad_request
         end
