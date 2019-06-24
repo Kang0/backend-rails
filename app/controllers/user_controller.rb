@@ -8,6 +8,7 @@ class UserController < ApplicationController
         #user serializer only serializers one level deep, tried to pass in token and user in the render json, but cannot
         if user && user.authenticate(params[:password])
             token = encode({user_id: user.id})
+            current_user = user
             userInfo = {:username => user.username, :email => user.email, :token => token, :status => "success", :message => "Successfully Logged In"}
             render json: userInfo, status: :ok
         else
