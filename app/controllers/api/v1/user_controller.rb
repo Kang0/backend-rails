@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class Api::V1::UserController < ApplicationController
 
     skip_before_action :authenticate, only: [:login, :create]
 
@@ -31,13 +31,6 @@ class UserController < ApplicationController
     def show_user
         render json: { username: current_user.username, email: current_user.email}
         #this only shows the username and email and not the password_digest
-    end
-
-    def show_challenges
-        challenges = Challenge.where(user_id: current_user.id)
-        render json: challenges 
-        # render :json => { :challenges => challenges.as_json(include: {calendars: {only: [:years, :months, :date]} } )} 
-        # showing challenges and the associated calendaer objects as a nested attribute in each challenge
     end
 
     def find_user

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::MimeResponds
-    include ActionController::HttpAuthentication::Token::ControllerMethods #don't really know what this does
+    include ActionController::HttpAuthentication::Token::ControllerMethods 
 
     before_action :authenticate 
     #this will run before any controller action

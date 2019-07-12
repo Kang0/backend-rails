@@ -8,6 +8,13 @@ class Api::V1::ChallengesController < Api::V1::BaseController
         end
     end
 
+    def show_challenges
+        challenges = Challenge.where(user_id: current_user.id)
+        render json: challenges 
+        # render :json => { :challenges => challenges.as_json(include: {calendars: {only: [:years, :months, :date]} } )} 
+        # showing challenges and the associated calendaer objects as a nested attribute in each challenge
+    end
+
     def create        
         #create challenge
         challenge = Challenge.new(challenge_params)
@@ -28,7 +35,6 @@ class Api::V1::ChallengesController < Api::V1::BaseController
         user_locker.save
 
         render json: challenge
-        # going to have to serialize whats returned from challenge
     end
 
     def destroy
