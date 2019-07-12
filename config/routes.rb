@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post '/registration', to: 'user#create'
       post '/login', to: 'user#login'
       get '/user/challenges', to: 'challenges#show_challenges'
+      get '/user/calendars', to: 'calendars#show_calendars'
       get '/user/find_user', to: 'user#find_user'
       get '/user/locker', to: 'user#show_locker'
       patch '/user/updatelocker', to: 'user#update_locker'
