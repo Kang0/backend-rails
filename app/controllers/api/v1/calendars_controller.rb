@@ -7,7 +7,9 @@ class Api::V1::CalendarsController < Api::V1::BaseController
 
     def update
         calendar_date = Calendar.find(params[:id])
-        calendar_date.update(params[:note])
+        calendar_date.update(note: params[:note])
+
+        render json: calendar_date
     end
 
     def show_calendars
