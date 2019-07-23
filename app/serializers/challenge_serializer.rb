@@ -1,5 +1,5 @@
 class ChallengeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :daysLeft, :user_id, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick
+  attributes :id, :name, :daysLeft, :user_id, :dayCreated, :lastDay, :clicked, :timeClicked, :timeToClick, :completed
 
   # has_many :calendars do
   #   object.calendars.order(:id)

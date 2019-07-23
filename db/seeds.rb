@@ -8,11 +8,11 @@
 
 @user = User.create(username: "Flatiron", email: "example@test.com", password: "kevin")
 
-@javascript = Challenge.create(name: "Learn Javascript", daysLeft: 26, user_id: @user.id, dayCreated: "04-06-2019", lastDay: "07-15-2019", clicked: false, timeClicked: "Apr 21 19, 5:43 pm", timeToClick: "April 22 19, 12:00 am")
+@javascript = Challenge.create(name: "Learn Javascript", daysLeft: 26, user_id: @user.id, dayCreated: "04-06-2019", lastDay: "07-15-2019", clicked: false, timeClicked: "Apr 21 19, 5:43 pm", timeToClick: "April 22 19, 12:00 am", completed: true)
 
-@sweat = Challenge.create(name: "Sweat", daysLeft: 52, user_id: @user.id, dayCreated: "05-02-2019", lastDay: "08-10-2019", clicked: false, timeClicked: "June 19 19, 6:00 pm", timeToClick: "June 20 19, 12:00 am")
+@sweat = Challenge.create(name: "Sweat", daysLeft: 52, user_id: @user.id, dayCreated: "05-02-2019", lastDay: "08-10-2019", clicked: false, timeClicked: "June 19 19, 6:00 pm", timeToClick: "June 20 19, 12:00 am", completed: false)
 
-@paint = Challenge.create(name: "Paint", daysLeft: 86, user_id: @user.id, dayCreated: "06-05-2019", lastDay: "09-13-2019", clicked: false, timeClicked: "June 19 19, 4:23 pm", timeToClick: "June 20 19, 12:00 am")
+@paint = Challenge.create(name: "Paint", daysLeft: 86, user_id: @user.id, dayCreated: "06-05-2019", lastDay: "09-13-2019", clicked: false, timeClicked: "June 19 19, 4:23 pm", timeToClick: "June 20 19, 12:00 am", completed: false)
 
 Locker.create(currency: 0, user_id: 1)
 
